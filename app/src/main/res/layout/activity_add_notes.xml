@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_notes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:paddingLeft="345dp">
+
+            <Button
+                android:id="@+id/button_go_note"
+                android:layout_width="55dp"
+                android:layout_height="50dp"
+                android:contentDescription="TODO"
+                android:background= "@drawable/notes"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editext_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Type your title here..."
+            android:padding="10dp" />
+
+
+        <EditText
+            android:id="@+id/edittext_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="Type your description here..."
+            android:inputType="textMultiLine"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/add_note_button"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/record_button"
+            android:text="Save"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>

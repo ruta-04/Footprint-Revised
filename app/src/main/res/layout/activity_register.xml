@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/red">
+
+    <ImageView
+        android:layout_width="146dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/edittext_f_name"
+        android:layout_width="279dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center"
+        android:hint="First Name" />
+    <EditText
+        android:id="@+id/edittext_l_name"
+        android:layout_width="279dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center"
+        android:hint="Last Name" />
+    <EditText
+        android:id="@+id/edittext_username"
+        android:layout_width="279dp"
+        android:drawableLeft="@drawable/email"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:gravity="center"
+        android:hint="@string/create_username" />
+    <RelativeLayout
+        android:layout_width="279dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation = "horizontal">
+
+        <EditText android:id="@+id/edittext_password"
+        android:gravity="center"
+        android:drawableLeft="@drawable/lock"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:inputType="textPassword"
+        android:layout_width="279dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/create_password" />
+
+        <TextView
+            android:id="@+id/view_password"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/visibility_off"
+            />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/edittext_confpassword"
+        android:gravity="center"
+        android:drawableLeft="@drawable/lock"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:layout_width="279dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:hint="@string/confirm_password" />
+
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="279dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#fdfdfd"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:text="@string/register"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="@string/already_have_an_account"/>
+        <TextView
+            android:id="@+id/textview_login"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="7dp"
+            android:textStyle="bold"
+            android:text="@string/sign_in_correct"/>
+    </LinearLayout>
+</LinearLayout>
