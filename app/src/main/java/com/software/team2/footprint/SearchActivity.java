@@ -78,6 +78,7 @@ public class SearchActivity extends AppCompatActivity {
                             mSearchRecyclerView.setAdapter(mSearchAdapter);
 
                         }
+
                     }
 
                     @Override
@@ -85,7 +86,9 @@ public class SearchActivity extends AppCompatActivity {
                         Toast.makeText(SearchActivity.this," API response Failed"+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+                searcharrayList.clear();
             }
+
         });
 
 
