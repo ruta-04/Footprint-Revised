@@ -74,14 +74,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkWatchlist(String w_symbol) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_WATCHLIST + " where w_symbol = ?",new String[] {w_symbol});
+        int count = cursor.getCount();
+        Log.i("COUNT_number","count is : "+count);
+        if(count>0) {
+            return true;
+        }
+        else {
+            //db.close();
+            cursor.close();
+            return false;
+        }
+
+    }
+
     public long addToWatchlist(String w_symbol, String w_name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("w_symbol", w_symbol);
         contentValues.put("w_name", w_name);
-        long res = db.insert("watchlist", null, contentValues);
-        db.close();
-        return res;
+        boolean alreadyThere = checkWatchlist(w_symbol);
+        if(!alreadyThere) {
+            long res = db.insert("watchlist", null, contentValues);
+            db.close();
+            return res;
+        }
+        else
+        {
+            return 0;
+        }
+
     }
 
     public long record_transaction(int user_key, String stock_name, String stock_symbol,float price,int total_shares, float total_money, String bought_sold, String date,float each_purchase_price)

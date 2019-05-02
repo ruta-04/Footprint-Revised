@@ -57,11 +57,14 @@ public class WatchListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watch_list);
 
         db = new DatabaseHelper(this);
+
+        /* Adding is for testing purposes. Make button later */
         db.addToWatchlist("AAPL","Apple");
         db.addToWatchlist("MSFT","Microsoft");
         db.addToWatchlist("FB","Facebook");
         db.addToWatchlist("BAC","Bank of America");
         db.addToWatchlist("GS","Goldman Sachs");
+
         home_button = findViewById(R.id.home_button);
         search = findViewById(R.id.search);
         Retrofit retrofit = new Retrofit.Builder()
@@ -102,7 +105,10 @@ public class WatchListActivity extends AppCompatActivity {
                         return;
                     }
 
+                    Log.i("Check arraylist ",stock.getSymbol());
+
                     GlobalQuote best = response.body().getGlobalQuote();
+                    Log.i("Check response", best.get01Symbol());
                     String sym = best.get01Symbol();
                     String pr = best.get05Price();
                     String ch = best.get09Change();
@@ -124,7 +130,7 @@ public class WatchListActivity extends AppCompatActivity {
 
 
         }
-/*
+
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
@@ -140,12 +146,12 @@ public class WatchListActivity extends AppCompatActivity {
                 int a=db.deleteWatchList(symbol, name);
                 if(a>0)
                     Log.i("DELETE ","SUCESSS");
-                arrayList.remove(position);
+                displayList.remove(position);
                 mAdapter.notifyDataSetChanged();
             }
         });
         helper.attachToRecyclerView(mRecyclerView);
-*/
+
         home_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
