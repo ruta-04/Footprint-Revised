@@ -12,18 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp">
 
-        <ImageButton
-            android:id="@+id/watchlist_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="12dp"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="Delete"
-            android:background="@color/light_red"
-            android:src="@drawable/garbage"/>
-
         <TextView
             android:id="@+id/recycler_stock_symbol"
             android:layout_width="match_parent"
@@ -48,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="45dp"
+
             android:layout_marginTop="4sp"
             android:text="Line 2"
             android:textSize="20sp" />
         <TextView
             android:id="@+id/recycler_stock_change"
             android:layout_width="wrap_content"
-            android:layout_marginRight="45dp"
+
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recycler_stock_price"
