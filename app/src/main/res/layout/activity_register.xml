@@ -36,6 +36,16 @@
         android:gravity="center"
         android:hint="Last Name" />
     <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="279dp"
+        android:drawableLeft="@drawable/email"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:gravity="center"
+        android:hint="@string/create_email" />
+    <EditText
         android:id="@+id/edittext_username"
         android:layout_width="279dp"
         android:drawableLeft="@drawable/email"

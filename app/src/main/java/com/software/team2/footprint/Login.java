@@ -14,6 +14,7 @@ public class Login extends AppCompatActivity {
     EditText mTextPassword;
     Button mButtonLogin;
     TextView mTextViewRegister;
+    TextView mTextViewReset;
     DatabaseHelper db;
 
     @Override
@@ -26,6 +27,7 @@ public class Login extends AppCompatActivity {
         mTextPassword = (EditText) findViewById(R.id.edittext_password);
         mButtonLogin = (Button) findViewById(R.id.button_login);
         mTextViewRegister = (TextView) findViewById(R.id.textview_register);
+        mTextViewReset = (TextView) findViewById(R.id.textview_reset);
         mTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +35,13 @@ public class Login extends AppCompatActivity {
                 startActivity(registerIntent);
             }
         });
-
+        mTextViewReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerIntent = new Intent(Login.this,email.class);
+                startActivity(registerIntent);
+            }
+        });
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

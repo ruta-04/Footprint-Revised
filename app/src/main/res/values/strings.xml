@@ -120,4 +120,10 @@
     <string name="Transaction_type">Transaction Type?</string>
     <string name="purchased_price">Purchased Price</string>
     <string name="alert">*Enter purchase price only if you have sold stock</string>
+    <string name="create_email">Email</string>
+    <string name="forgot">Forgot Password?</string>
+    <string name="reset">RESET</string>
+    <string name="verify">Verify Password</string>
+    <string name="new_password">New Password</string>
+    <string name="verify_email">Verify Email</string>
 </resources>

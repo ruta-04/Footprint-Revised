@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mTextUsername;
     EditText mTextPassword;
     EditText mTextConfPassword;
+    EditText mTextEmail;
     Button mButtonRegister;
     TextView mTextViewLogin;
     TextView mTextViewPassword;
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         mTextFirstName = (EditText) findViewById(R.id.edittext_f_name);
         mTextLastName = (EditText) findViewById(R.id.edittext_l_name);
+        mTextEmail = (EditText) findViewById(R.id.edittext_email);
         mTextUsername = (EditText) findViewById(R.id.edittext_username);
         mTextPassword = (EditText) findViewById(R.id.edittext_password);
         mTextConfPassword = (EditText) findViewById(R.id.edittext_confpassword);
@@ -76,31 +78,40 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String first = mTextFirstName.getText().toString().trim();
                 String last = mTextLastName.getText().toString().trim();
+                String email = mTextEmail.getText().toString().trim();
                 String user = mTextUsername.getText().toString().trim();
-                String pwd =  mTextPassword.getText().toString().trim();
+                String pwd = mTextPassword.getText().toString().trim();
                 String conf_pwd = mTextConfPassword.getText().toString().trim();
-                if(validUsername(user)) {
-                    if (validPassword(pwd)) {
-                        if (pwd.equals(conf_pwd)) {
-                            long val = db.addUser(first, last, user, pwd);
-                            if (val > 0) {
-                                Toast.makeText(RegisterActivity.this, "Welcome! You are registered", Toast.LENGTH_SHORT).show();
-                                Intent moveToLogin = new Intent(RegisterActivity.this, Login.class);
-                                startActivity(moveToLogin);
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Registration Error", Toast.LENGTH_SHORT).show();
+                boolean alreadyThereU = db.check_username(user);
+                boolean alreadyThereE = db.check_email(email);
+                if (alreadyThereE) {
+                    if (alreadyThereU) {
+                        if (validUsername(user)) {
+                            if (validPassword(pwd)) {
+                                if (pwd.equals(conf_pwd)) {
+                                    long val = db.addUser(first, last, email, user, pwd);
+                                    if (val > 0) {
+                                        Toast.makeText(RegisterActivity.this, "Welcome! You are registered", Toast.LENGTH_SHORT).show();
+                                        Intent moveToLogin = new Intent(RegisterActivity.this, Login.class);
+                                        startActivity(moveToLogin);
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Registration Error", Toast.LENGTH_SHORT).show();
 
+                                    }
+                                } else {
+                                    mTextConfPassword.setError("must match with password");
+                                }
+                            } else {
+                                mTextPassword.setError("Password must contain: \n - At least eight characters long \n - At least one uppercase character, one number and one special character (@,#,$,%,_,&,+,=)");
                             }
                         } else {
-                            mTextConfPassword.setError("must match with password");
+                            mTextUsername.setError("Username must be at least six characters long with at least one letter and one number");
                         }
                     } else {
-                        mTextPassword.setError("Password must contain: \n - At least eight characters long \n - At least one uppercase character, one number and one special character (@,#,$,%,_,&,+,=)");
+                        mTextUsername.setError("Username is already registered");
                     }
-                }
-                else
-                {
-                    mTextUsername.setError("Username must be at least six characters long with at least one letter and one number");
+                } else {
+                    mTextEmail.setError("Email is already registered");
                 }
             }
         });
