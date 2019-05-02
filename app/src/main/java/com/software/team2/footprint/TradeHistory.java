@@ -73,13 +73,13 @@ public class TradeHistory extends AppCompatActivity {
                 int userKey = cursor.getInt(1);
                 String stockName = cursor.getString(2);
                 String stockSymbol = cursor.getString(3);
-                float sprice = cursor.getFloat(4);
+                float price = cursor.getFloat(4);
                 int totalShares = cursor.getInt(5);
                 float totalMoney = cursor.getFloat(6);
                 String transactionType = cursor.getString(7);
                 String date = cursor.getString(8);
-                float purchasePrice = cursor.getFloat(9);
-                tradeList.add(new TradeHistoryItem(stockSymbol, stockName, purchasePrice, sprice, totalShares, transactionType, date));
+                float eachPrice = cursor.getFloat(9);
+                tradeList.add(new TradeHistoryItem(stockSymbol, stockName, eachPrice, price, totalMoney, totalShares, transactionType, date));
             }
             cursor.close();
         } else {
