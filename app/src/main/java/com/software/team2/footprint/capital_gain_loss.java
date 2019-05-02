@@ -24,17 +24,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class capital_gain_loss extends AppCompatActivity {
 
     DatabaseHelper db;
-    final ArrayList<Stock> stock_gain = new ArrayList<>();
-    static ArrayList<Stock> display = new ArrayList();
+    //  final ArrayList<Stock> stock_gain = new ArrayList<>();
+    //static ArrayList<Stock> display = new ArrayList();
     private static final String TAG = "capital_gain_loss";
     public static final String BASE_URL = "https://www.alphavantage.co";
     public static final String API_KEY = "GVHMUUHWT2XJ9CAK";
     private TextView textViewResult;
     private float live_price = 0;
-    public String capital_gain_loss_percent_s = "";
-    public String capital_gain_loss_dollars_s = "";
-     static float capital_gain_loss_percent = 0;
-     static float capital_gain_loss_dollars = 0;
+    static String capital_gain_loss_percent_s = "";
+    static  String capital_gain_loss_dollars_s = "";
+    static float capital_gain_loss_percent = 0;
+    static float capital_gain_loss_dollars = 0;
+    static float total_purchase_price = 0;
+    static float profit_percent=0;
+    static float profit_dollars =0;
+
+
     Button home_button;
     Button search;
     capital_gain_loss_adapter adapter;
@@ -46,12 +51,14 @@ public class capital_gain_loss extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started");
         home_button = findViewById(R.id.home_button);
         search = findViewById(R.id.search);
-        TextView mtextViewpercent = (TextView) findViewById(R.id.Gain_percent);
-        TextView mtextViewDollars = (TextView) findViewById(R.id.Gain_dollars);
+        final TextView mtextViewpercent = (TextView) findViewById(R.id.Gain_percent);
+        final TextView mtextViewDollars = (TextView) findViewById(R.id.Gain_dollars);
         final ListView mListView = (ListView) findViewById(R.id.listView_1);
-        ImageView mimageView = (ImageView) findViewById(R.id.gain_loss_chart);
+        final ImageView mimageView = (ImageView) findViewById(R.id.gain_loss_chart);
         db = new DatabaseHelper(this);
 
+        final ArrayList<Stock> stock_gain = new ArrayList<>();
+        final ArrayList<Stock> display = new ArrayList();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -63,8 +70,17 @@ public class capital_gain_loss extends AppCompatActivity {
         Cursor cursor = db.get_performance();
 
         if (cursor != null && cursor.getCount() > 0) {
+            profit_dollars = 0;
+            profit_percent = 0;
+            capital_gain_loss_percent = 0;
+              capital_gain_loss_dollars = 0;
+            total_purchase_price = 0;
+            profit_percent=0;
+             profit_dollars =0;
+            Log.i("when start $ ",String.valueOf(capital_gain_loss_dollars));
+            Log.i("when start % ",String.valueOf(capital_gain_loss_percent));
             while (cursor.moveToNext()) {
-
+                Log.i("come inside while ", " looop");
                 final String S = cursor.getString(7);
                 if (S.equals("B")) {
                     final String stock_name = cursor.getString(2);
@@ -72,7 +88,6 @@ public class capital_gain_loss extends AppCompatActivity {
 
                     final float stock_bought = cursor.getFloat(4);
                     final float stock_shares = cursor.getFloat(5);
-
 
                     Call<Example> call = searchAlpha.getStockInfo("GLOBAL_QUOTE", stock_symbol, API_KEY);
                     call.enqueue(new Callback<Example>() {
@@ -87,49 +102,49 @@ public class capital_gain_loss extends AppCompatActivity {
 
                             GlobalQuote best = response.body().getGlobalQuote();
 
-                            //String content = "";
-
-                            //content += "Open: " + best.get05Price() + "\n";
-
                             live_price = Float.parseFloat(best.get05Price());
 
-                            //live_price = 2;
-
-                            float profit_dollars = (stock_bought * stock_shares) - (live_price * stock_shares);
-
+                            total_purchase_price += (stock_bought * stock_shares);
+                            profit_dollars = (live_price * stock_shares) - (stock_bought * stock_shares);
+                            capital_gain_loss_dollars += profit_dollars;
+                            Log.i("capital ******", String.valueOf(capital_gain_loss_dollars));
                             String profit_dollars_s = String.format("%.2f", profit_dollars);
 
-                            float profit_percent = profit_dollars / (stock_bought * stock_shares);
+                            profit_percent = profit_dollars / (stock_bought * stock_shares) * 100;
                             String profit_percent_s = String.format("%.2f", profit_percent);
 
-                            capital_gain_loss_percent += profit_percent;
-                            capital_gain_loss_dollars += profit_dollars;
-
-                         capital_gain_loss_percent_s = String.format("%.2f", capital_gain_loss_percent) + " %";
-                            capital_gain_loss_dollars_s = String.format("%.2f", capital_gain_loss_dollars) + " $";
-
                             Log.i("live_price: ", Float.toString(live_price));
-                            //textViewResult.append(content);
                             Log.i("Stock Name", stock_name);
                             Log.i("Stock Symbol", stock_symbol);
                             Log.i("profit price", profit_dollars_s);
                             Log.i("profit percent", profit_percent_s);
 
+                            System.out.printf("value after coming out of loop %f \n",capital_gain_loss_dollars);
 
-                            System.out.println("Hello");
+                            capital_gain_loss_percent = (capital_gain_loss_dollars/total_purchase_price)*100;
+                            System.out.printf("value after coming out of loop %f \n",capital_gain_loss_percent);
+                            capital_gain_loss_percent_s = String.format("%.2f", capital_gain_loss_percent) + " %";
 
-                            // if(S.equals("B"))
-                            //{
+                            capital_gain_loss_dollars_s = String.format("%.2f", capital_gain_loss_dollars) + " $";
+                            Log.i("capital STRING ******", capital_gain_loss_dollars_s);
+
+                            mtextViewpercent.setText(capital_gain_loss_percent_s);
+                            mtextViewDollars.setText(capital_gain_loss_dollars_s);
+
+                            if (capital_gain_loss_dollars < 0) {
+                                mimageView.setImageResource(R.drawable.economics);
+                            } else {
+                                mimageView.setImageResource(R.drawable.economic);
+                            }
+                            mtextViewDollars.requestFocus();
+                           // mtextViewDollars.setTextSize(15);
+
                             display.add(new Stock(stock_name, stock_symbol, profit_percent_s, profit_dollars_s));
-                            System.out.println("Hello");
                             System.out.println(display);
                             adapter = new capital_gain_loss_adapter(getApplicationContext(), R.layout.adapter_capital, display);
                             mListView.setAdapter(adapter);
 
                         }
-
-                        //}
-
 
                         @Override
                         public void onFailure(Call<Example> call, Throwable t) {
@@ -137,42 +152,32 @@ public class capital_gain_loss extends AppCompatActivity {
                         }
                     });
 
-
                 }
 
-
-                cursor.close();
-                mtextViewDollars.requestFocus();
-                mtextViewDollars.setTextSize(15);
-
-                home_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(capital_gain_loss.this, home.class);
-                        startActivity(intent);
-                    }
-                });
-
-                search.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(capital_gain_loss.this, SearchActivity.class);
-                        startActivity(intent);
-                    }
-                });
             }
-            if (capital_gain_loss_dollars < 0) {
-                mimageView.setImageResource(R.drawable.economics);
-            } else {
-                mimageView.setImageResource(R.drawable.economic);
-            }
-            capital_gain_loss_percent_s = String.format("%.2f", capital_gain_loss_percent) + " %";
-            capital_gain_loss_dollars_s = String.format("%.2f", capital_gain_loss_dollars) + " $";
-            mtextViewpercent.setText(capital_gain_loss_percent_s);
-            mtextViewDollars.setText(capital_gain_loss_dollars_s);
-            Log.i("capital_dollars", capital_gain_loss_dollars_s);
-            Log.i(" capital_percent ", capital_gain_loss_percent_s);
+
         }
 
-    }
+            cursor.close();
+
+            home_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(capital_gain_loss.this, home.class);
+                    startActivity(intent);
+                }
+            });
+
+            search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(capital_gain_loss.this, SearchActivity.class);
+
+                    startActivity(intent);
+                }
+            });
+
+        }
+
 }
+

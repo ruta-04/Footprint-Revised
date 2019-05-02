@@ -110,7 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
     public long record_transaction(int user_key, String stock_name, String stock_symbol,float price,int total_shares, float total_money, String bought_sold, String date,float each_purchase_price)
     {
         SQLiteDatabase db = this.getWritableDatabase();

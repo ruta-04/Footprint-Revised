@@ -38,7 +38,6 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="83dp"
             android:layout_height="91dp"
-
             android:src="@drawable/bars"
             app:civ_border_color="#254651"
             app:civ_border_width="5dp" />
@@ -53,8 +52,6 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="PERFORMANCE"
-
-
             android:textSize="30sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -67,15 +64,15 @@
 
         <TextView
             android:id="@+id/sec_title"
-            android:layout_width="140dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:baselineAligned="false"
-
+            android:textStyle="bold"
             android:gravity="center"
             android:orientation="vertical"
             android:text="My Portfolio"
-            android:textColor="#254651"
-            android:textSize="16dp"
+            android:textColor="#B74C3E"
+            android:textSize="25dp"
             tools:ignore="InvalidId" />
     </LinearLayout>
 
@@ -88,12 +85,12 @@
                 android:layout_width="87dp"
                 android:layout_height="40dp"
                 android:baselineAligned="false"
-
+                android:textStyle="bold"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:text="Ticker"
                 android:textColor="#254651"
-                android:textSize="14dp" />
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,12 +103,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="66.6"
-
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:text="Stock Name"
                     android:textAlignment="center"
                     android:textColor="#254651"
-                    android:textSize="14dp" />
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -123,11 +120,11 @@
                         android:id="@+id/profit_percent"
                         android:layout_width="75dp"
                         android:layout_height="40dp"
-
+                        android:textStyle="bold"
                         android:gravity="center"
                         android:text="%"
                         android:textColor="#254651"
-                        android:textSize="14dp" />
+                        android:textSize="18dp" />
 
                   <LinearLayout
                       android:layout_width="match_parent"
@@ -141,9 +138,9 @@
                           android:layout_height="40dp"
                           android:gravity="center"
                           android:text="$"
-
+                          android:textStyle="bold"
                           android:textColor="#254651"
-                          android:textSize="14dp"/>
+                          android:textSize="18dp"/>
 
                   </LinearLayout>
 

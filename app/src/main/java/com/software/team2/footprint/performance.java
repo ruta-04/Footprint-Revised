@@ -43,9 +43,9 @@ final    ArrayList<Stock> stock_perf = new ArrayList<>();
                 float stock_bought = cursor.getFloat(9);
                 float stock_shares = cursor.getFloat(5);
                 float profit_dollars = stock_total_money-(stock_bought*stock_shares);
-                String profit_dollars_s = Float.toString(profit_dollars);
-                float percent = profit_dollars/(stock_bought*stock_shares);
-                String percent_s = Float.toString(percent);
+                String profit_dollars_s = String.format("%.2f", profit_dollars) ;
+                float percent = profit_dollars/(stock_bought*stock_shares) *100;
+                String percent_s = String.format("%.2f", percent) ;
                 String S = cursor.getString(7);
                 if(S.equals("S"))
                 {

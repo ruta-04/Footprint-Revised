@@ -16,14 +16,11 @@
         <activity android:name=".Profile" />
         <activity android:name=".TradeHistory" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".SearchAcitvity" />
         <activity android:name=".home" />
-        <activity android:name=".watchlist" />
+        <activity android:name=".WatchListActivity" />
         <activity android:name=".capital_gain_loss" />
-        <activity android:name=".captial_gain_loss" />
         <activity android:name=".performance" />
         <activity android:name=".UpdateNote" />
-        <activity android:name=".note_layout" />
         <activity android:name=".Add_notes" />
         <activity android:name=".notes" />
         <activity android:name=".Transaction" />
@@ -35,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".WatchListActivity" />
+
     </application>
 
 </manifest>
