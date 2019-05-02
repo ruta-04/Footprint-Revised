@@ -102,7 +102,10 @@ public class WatchListActivity extends AppCompatActivity {
                         return;
                     }
 
+                    Log.i("Check arraylist ",stock.getSymbol());
+
                     GlobalQuote best = response.body().getGlobalQuote();
+                    Log.i("Check response", best.get01Symbol());
                     String sym = best.get01Symbol();
                     String pr = best.get05Price();
                     String ch = best.get09Change();
