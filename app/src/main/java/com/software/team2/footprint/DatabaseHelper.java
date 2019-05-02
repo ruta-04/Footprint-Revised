@@ -102,6 +102,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getAllTransactions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = (Cursor) db.rawQuery("select *  from " + TABLE_TRANSACTION + " where user_key =? ", new String[]{String.valueOf(user_key_for_transaction)});
+        return res;
+    }
+
     public long addUser(String f_name, String l_name, String user, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -17,17 +17,21 @@
 
     <EditText
         android:id="@+id/edittext_f_name"
+        android:drawableLeft="@drawable/person_icon_register"
         android:layout_width="279dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
+        android:paddingLeft="4dp"
         android:background="@drawable/rounded_edittext"
         android:gravity="center"
         android:hint="First Name" />
     <EditText
         android:id="@+id/edittext_l_name"
+        android:drawableLeft="@drawable/person_icon_register"
         android:layout_width="279dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
+        android:paddingLeft="4dp"
         android:background="@drawable/rounded_edittext"
         android:gravity="center"
         android:hint="Last Name" />

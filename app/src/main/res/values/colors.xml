@@ -8,4 +8,9 @@
     <color name="white"> #FFFFFF</color>
     <color name="light_red"> #B74C3E</color>
     <color name="bgrowcolor">#821C17</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="greyBlue">#51717D</color>
+    <color name="brownish">#A0804D</color>
+
+
 </resources>

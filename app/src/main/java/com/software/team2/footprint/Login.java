@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
                 if(res == true)
                 {
                     Toast.makeText(Login.this,"Successfully Logged In", Toast.LENGTH_SHORT).show();
-                    Intent testIntent = new Intent(Login.this,capital_gain_loss.class);
+                    Intent testIntent = new Intent(Login.this,home.class);
                     startActivity(testIntent);
                 }
                 else

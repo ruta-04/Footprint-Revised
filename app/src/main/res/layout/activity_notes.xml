@@ -64,22 +64,42 @@
         tools:listitem="@layout/note_item" />
 
     <LinearLayout
+        android:id="@+id/meh2"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
+        android:layout_height="60dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="0dp"
         android:background="#B74C3E"
-        android:layout_marginTop="2dp"
-        android:paddingLeft="200dp">
-
+        android:orientation="horizontal"
+        >
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:paddingLeft="40dp">
         <Button
             android:id="@+id/home_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/home_button"
             android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/home_button"/>
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:paddingRight="40dp"
+        android:layout_marginHorizontal="250dp">
+        <Button
+            android:id="@+id/search"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
 
+            android:background="@drawable/search" />
 
     </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>
 </ScrollView>

@@ -1,6 +1,7 @@
 package com.software.team2.footprint;
 
 import android.arch.lifecycle.ViewModelStore;
+import android.content.Intent;
 import android.database.Cursor;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,9 +44,10 @@ public class WatchListActivity extends AppCompatActivity {
     private static final String TAG = "WatchListActivity";
     public static final String BASE_URL = "https://www.alphavantage.co";
     public static final String API_KEY = "GVHMUUHWT2XJ9CAK";
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    Button home_button;
+    Button search;
+    RecyclerView mRecyclerView;
+   ExampleAdapter mAdapter;
     ArrayList<Stock> arrayList = new ArrayList<>();
     ArrayList<Stock> displayList = new ArrayList<>();
 
@@ -54,10 +57,13 @@ public class WatchListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watch_list);
 
         db = new DatabaseHelper(this);
-        db.addToWatchlist("MSFT", "Microsoft");
-        db.addToWatchlist("AAPL", "Apple");
-        db.addToWatchlist("GOOGL", "Alphabet");
-
+        db.addToWatchlist("AAPL","Apple");
+        db.addToWatchlist("MSFT","Microsoft");
+        db.addToWatchlist("FB","Facebook");
+        db.addToWatchlist("BAC","Bank of America");
+        db.addToWatchlist("GS","Goldman Sachs");
+        home_button = findViewById(R.id.home_button);
+        search = findViewById(R.id.search);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -65,8 +71,7 @@ public class WatchListActivity extends AppCompatActivity {
 
         AlphavantageApi searchAlpha = retrofit.create(AlphavantageApi.class);
         mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+
         Cursor cursor =  db.getWatchlistEntries();
         if(cursor!= null  && cursor.getCount() > 0)
         {
@@ -103,8 +108,10 @@ public class WatchListActivity extends AppCompatActivity {
                     String ch = best.get09Change();
                     Stock display = new Stock(STOCK_NAME, sym, pr, ch);
                     displayList.add(display);
+                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getParent());
                     mAdapter = new ExampleAdapter(displayList);
                     mRecyclerView.setLayoutManager(mLayoutManager);
+                    mRecyclerView.setHasFixedSize(true);
                     mRecyclerView.setAdapter(mAdapter);
                 }
 
@@ -114,10 +121,46 @@ public class WatchListActivity extends AppCompatActivity {
                 }
             });
 
+
+
         }
+/*
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                return false;
+            }
 
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                Toast.makeText(WatchListActivity.this,"  delete!", Toast.LENGTH_SHORT).show();
+                int position = viewHolder.getAdapterPosition();
+                String symbol = arrayList.get(position).getSymbol();
+                String name = arrayList.get(position).getName();
+                int a=db.deleteWatchList(symbol, name);
+                if(a>0)
+                    Log.i("DELETE ","SUCESSS");
+                arrayList.remove(position);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+        helper.attachToRecyclerView(mRecyclerView);
+*/
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WatchListActivity.this, home.class);
+                startActivity(intent);
+            }
+        });
 
-
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WatchListActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

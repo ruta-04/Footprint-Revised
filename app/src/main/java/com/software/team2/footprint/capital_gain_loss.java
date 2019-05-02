@@ -1,10 +1,13 @@
 package com.software.team2.footprint;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,12 +33,15 @@ public class capital_gain_loss extends AppCompatActivity {
     private float live_price= 0;
     public String capital_gain_loss_percent_s ="";
     public String capital_gain_loss_dollars_s ="";
+    Button home_button;
+    Button search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capital_gain_loss);
         Log.d(TAG, "onCreate: Started");
-
+        home_button = findViewById(R.id.home_button);
+        search = findViewById(R.id.search);
         TextView mtextViewpercent = (TextView)findViewById(R.id.Gain_percent);
         TextView mtextViewDollars = (TextView)findViewById(R.id.Gain_dollars);
         ListView mListView = (ListView) findViewById(R.id.listView_1);
@@ -138,11 +144,6 @@ public class capital_gain_loss extends AppCompatActivity {
         }
         cursor.close();
 
-        //  else
-        //{
-        //  Toast.makeText(capital_gain_loss.this,"No Stocks!", Toast.LENGTH_SHORT).show();
-        //}
-
 
         mtextViewpercent.setText(capital_gain_loss_percent_s);
         mtextViewDollars.setText(capital_gain_loss_dollars_s);
@@ -164,6 +165,23 @@ public class capital_gain_loss extends AppCompatActivity {
 
         //capital_gain_loss_adapter adapter_one = new capital_gain_loss_adapter(this,R.layout.activity_capital_gain_loss,stock_perf);
         //textViewResult.setAdapter(adapter_one);
+
+
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(capital_gain_loss.this, home.class);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(capital_gain_loss.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

@@ -1,9 +1,12 @@
 package com.software.team2.footprint;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,14 +16,16 @@ public class performance extends AppCompatActivity {
 
     DatabaseHelper db;
 final    ArrayList<Stock> stock_perf = new ArrayList<>();
-
+    Button home_button;
+    Button search;
     private static final String TAG = "Performance";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance);
         Log.d(TAG, "onCreate: Started");
-
+        home_button = findViewById(R.id.home_button);
+        search = findViewById(R.id.search);
         ListView mListView = (ListView) findViewById(R.id.listView);
         db = new DatabaseHelper(this);
 
@@ -62,6 +67,20 @@ final    ArrayList<Stock> stock_perf = new ArrayList<>();
         Stock_performance_adapter adapter = new  Stock_performance_adapter(this,  R.layout.adapter_performance,stock_perf);
         mListView.setAdapter(adapter);
 
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(performance.this, home.class);
+                startActivity(intent);
+            }
+        });
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(performance.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

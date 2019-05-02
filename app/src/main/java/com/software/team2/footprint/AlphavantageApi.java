@@ -10,6 +10,12 @@ import retrofit2.http.Query;
 
 public interface AlphavantageApi {
     @GET("/query")
+    Call<bExample> getBestMatch(
+            @Query("function") String function,
+            @Query("keywords") String keywords,
+            @Query("apikey") String apiKey);
+
+    @GET("/query")
     Call<Example> getStockInfo(
             @Query("function") String function,
             @Query("symbol") String symbol,

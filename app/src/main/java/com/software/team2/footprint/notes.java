@@ -21,6 +21,8 @@ public class notes extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseHelper db;
+    Button home_button;
+    Button search;
     final ArrayList<NoteModel> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,8 @@ public class notes extends AppCompatActivity {
         Button addNoteButton = (Button) findViewById(R.id.button_add_note);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         db = new DatabaseHelper(this);
-
+        home_button = findViewById(R.id.home_button);
+        search = findViewById(R.id.search);
         addNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +66,6 @@ public class notes extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        Log.i("Note co","23456");
         final MyAdapterNotes myAdapterNotes = new MyAdapterNotes(getApplicationContext(), arrayList);
         recyclerView.setAdapter(myAdapterNotes);
 
@@ -88,5 +90,21 @@ public class notes extends AppCompatActivity {
             }
         });
         helper.attachToRecyclerView(recyclerView);
+
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(notes.this, home.class);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(notes.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

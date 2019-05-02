@@ -44,6 +44,8 @@ public class Transaction extends AppCompatActivity implements View.OnClickListen
     SimpleDateFormat dateFormatter;
     String transaction_type;
     Calendar newDate;
+    Button home_button;
+    Button search;
     private static final String TAG = "MyActivity";
     String final_date;
     private static DecimalFormat df = new DecimalFormat("0.00");
@@ -63,6 +65,8 @@ public class Transaction extends AppCompatActivity implements View.OnClickListen
         alert_for_purchase = (TextView)findViewById(R.id.alert_for_purchase);
         mTextPurchasedPrice =(EditText) findViewById(R.id.edittext_purchasedPrice_each_stock);
         mTextOr = (TextView)findViewById(R.id.textView_or);
+        home_button = findViewById(R.id.home_button);
+        search = findViewById(R.id.search);
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.RGroup);
         radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -227,6 +231,22 @@ public class Transaction extends AppCompatActivity implements View.OnClickListen
                     //Toast.makeText(Transaction.this, "Please enter the stock name", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Transaction.this, home.class);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Transaction.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
 
