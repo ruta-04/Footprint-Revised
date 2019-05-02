@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class home extends AppCompatActivity {
 
-
+    ImageView news;
    CardView watchlist;
     CardView notes;
     CardView history;
@@ -23,6 +24,7 @@ public class home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        news = findViewById(R.id.news_icon);
         watchlist = findViewById(R.id.watchlist_intent);
         notes =   findViewById(R.id.notes_intent);
         history =  findViewById(R.id.history_intent);
@@ -83,6 +85,13 @@ public class home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, News.class);
                 startActivity(intent);
             }
         });

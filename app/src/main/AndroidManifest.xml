@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".newPassword"></activity>
-        <activity android:name=".email" />
         <activity android:name=".Profile" />
         <activity android:name=".TradeHistory" />
         <activity android:name=".SearchActivity" />
@@ -32,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-
+        <activity android:name=".News"></activity>
     </application>
 
 </manifest>
