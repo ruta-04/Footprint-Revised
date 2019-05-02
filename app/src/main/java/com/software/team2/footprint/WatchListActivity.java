@@ -47,7 +47,7 @@ public class WatchListActivity extends AppCompatActivity {
     Button home_button;
     Button search;
     RecyclerView mRecyclerView;
-   ExampleAdapter mAdapter;
+    ExampleAdapter mAdapter;
     ArrayList<Stock> arrayList = new ArrayList<>();
     ArrayList<Stock> displayList = new ArrayList<>();
 
@@ -58,12 +58,12 @@ public class WatchListActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
-        /* Adding is for testing purposes. Make button later */
-        db.addToWatchlist("AAPL","Apple");
+        /* Adding is for testing purposes. Made button later */
+     /*   db.addToWatchlist("AAPL","Apple");
         db.addToWatchlist("MSFT","Microsoft");
         db.addToWatchlist("FB","Facebook");
         db.addToWatchlist("BAC","Bank of America");
-        db.addToWatchlist("GS","Goldman Sachs");
+        db.addToWatchlist("GS","Goldman Sachs");*/
 
         home_button = findViewById(R.id.home_button);
         search = findViewById(R.id.search);
