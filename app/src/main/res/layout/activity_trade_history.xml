@@ -55,6 +55,7 @@
         android:id="@+id/empty_trade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:text="No Trade History to Show"
         android:textColor="@color/blue"

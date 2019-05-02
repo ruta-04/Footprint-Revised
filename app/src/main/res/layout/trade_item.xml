@@ -115,7 +115,7 @@
             android:layout_below="@id/tsymbol"
 
             android:layout_marginTop="60dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_toLeftOf="@id/tdate"
             android:text="Type on"
             android:textColor="@color/bgrowcolor"
