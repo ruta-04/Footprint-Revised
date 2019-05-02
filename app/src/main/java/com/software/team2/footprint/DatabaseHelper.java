@@ -21,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4="username";
     public static final String COL_5="password";
     public static int user_key_for_transaction;
+    public static String user_name;
 
     public static final String TABLE_WATCHLIST= "watchlist";
     public static final String W_COL_1="w_symbol";
@@ -168,6 +169,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.i("USER_key_TRANSACTION", "key  "+user_key_for_transaction);
         return user_key_for_transaction;
     }
+
+    public Cursor getUser()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = (Cursor) db.rawQuery("select * from " + TABLE_NAME + " where ID =? ", new String[]{String.valueOf(user_key_for_transaction)});
+        return res;
+    }
+
+
+
+
 
     public Cursor getWatchlistEntries()
     {

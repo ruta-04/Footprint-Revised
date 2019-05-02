@@ -67,17 +67,28 @@ public class TradeHistoryAdapter extends RecyclerView.Adapter<com.software.team2
         if((currentItem.getTransactionType()).compareToIgnoreCase("B") == 0)
         {
             itemViewHolder.transcationTypeTextView.setText("Bought on:");
-            itemViewHolder.bPriceTextView.setText("Purchase Price: $" + Float.toString(currentItem.getBprice()));
-            itemViewHolder.sPriceTextView.setText(Float.toString(currentItem.getSprice()));
+            itemViewHolder.bPriceTextView.setText("Purchase Price: $" + Float.toString(currentItem.getPrice()));
+            //itemViewHolder.sPriceTextView.setText(Float.toString(currentItem.getSprice()));
 
         }
         else if((currentItem.getTransactionType()).compareToIgnoreCase("S") == 0)
         {
             itemViewHolder.transcationTypeTextView.setText("Sold on:");
             itemViewHolder.sPriceTextView.setVisibility(View.VISIBLE);
-            itemViewHolder.bPriceTextView.setText("Purchase Price: $" + Float.toString(currentItem.getBprice()));
-            itemViewHolder.sPriceTextView.setText("Sell Price: $" + Float.toString(currentItem.getSprice()));
-            float netPrice = currentItem.getShares() * (currentItem.getSprice() - currentItem.getBprice());
+            itemViewHolder.bPriceTextView.setText("Purchase Price: $" + Float.toString(currentItem.getEachPrice()));
+            itemViewHolder.sPriceTextView.setText("Sell Price: $" + Float.toString(currentItem.getPrice()));
+            float netPrice = 0;
+            if(currentItem.getShares() == 0)
+            {
+                float shares = currentItem.getTotalPrice()/currentItem.getPrice();
+                netPrice = shares * (currentItem.getPrice() - currentItem.getEachPrice());
+            }
+            else
+            {
+                netPrice = currentItem.getShares() * (currentItem.getPrice() - currentItem.getEachPrice());
+            }
+
+
             if(netPrice > 0)
             {
                 itemViewHolder.netgTextView.setVisibility(View.VISIBLE);

@@ -4,20 +4,22 @@ public class TradeHistoryItem {
 
     private String symbol;
     private String company;
-    private float bprice;
-    private float sprice;
+    private float eachPrice;
+    private float price;
     private int shares;
     private String transactionType;
     private String date;
+    private float totalPrice;
 
-    public TradeHistoryItem(String symbol, String company, float bprice, float sprice, int shares, String transactionType, String date) {
+    public TradeHistoryItem(String symbol, String company, float eachPrice, float price, float totalPrice, int shares, String transactionType, String date) {
         this.symbol = symbol;
         this.company = company;
-        this.bprice = bprice;
-        this.sprice = sprice;
+        this.eachPrice = eachPrice;
+        this.price = price;
         this.shares = shares;
         this.transactionType = transactionType;
         this.date = date;
+        this.totalPrice = totalPrice;
     }
 
     public String getSymbol() {
@@ -28,12 +30,12 @@ public class TradeHistoryItem {
         return company;
     }
 
-    public float getBprice() {
-        return bprice;
+    public float getEachPrice() {
+        return eachPrice;
     }
 
-    public float getSprice() {
-        return sprice;
+    public float getPrice() {
+        return price;
     }
 
     public int getShares() {
@@ -46,5 +48,9 @@ public class TradeHistoryItem {
 
     public String getDate() {
         return date;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
     }
 }
