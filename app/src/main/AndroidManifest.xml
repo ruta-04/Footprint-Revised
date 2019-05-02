@@ -13,6 +13,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Profile" />
         <activity android:name=".TradeHistory" />
+        <activity android:name=".email"/>
+        <activity android:name=".newPassword"/>
         <activity android:name=".SearchActivity" />
         <activity android:name=".home" />
         <activity android:name=".WatchListActivity" />
